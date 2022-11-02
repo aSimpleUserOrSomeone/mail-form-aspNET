@@ -51,8 +51,11 @@ namespace mail_app
                 message = new MailMessage(tbFrom.Text, tbTo.Text);
                 message.Subject = tbSubject.Text;
                 message.Body = tbText.Text;
-                client = new SmtpClient(tbSMTP.Text);
-                client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                client = new SmtpClient(tbSMTP.Text, int.Parse(tbPort.Text));
+                client.UseDefaultCredentials = false;
+                client.EnableSsl = false;
+                client.Credentials = new System.Net.NetworkCredential(tbUser.Text, tbPassword.Text);
+                
                 for (int i = 0; i < lbAttachments.Items.Count; i++)
                 {
                     Attachment attachment = new Attachment(Server.MapPath("~/") + lbAttachments.Items[i].ToString());
