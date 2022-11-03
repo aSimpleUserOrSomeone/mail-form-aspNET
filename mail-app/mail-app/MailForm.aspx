@@ -29,6 +29,7 @@
         }
         #tbText {
             height: 200px;
+            resize: vertical;
         }
         #btnSend, #lblInfo1 {
             display: block;
@@ -99,40 +100,40 @@
             <tr>
                 <td class="auto-style4">From</td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="tbFrom" runat="server" CssClass="centered" Width="300px"></asp:TextBox>
+                    <asp:TextBox ID="tbFrom" runat="server" CssClass="centered" Width="300px" TextMode="Email"></asp:TextBox>
                 </td>
                 <td class="auto-style12">&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style4">To</td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="tbTo" runat="server" CssClass="centered" Width="300px"></asp:TextBox>
+                    <asp:TextBox ID="tbTo" runat="server" CssClass="centered" Width="300px" TextMode="Email"></asp:TextBox>
                 </td>
                 <td class="auto-style12">&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style4">Subject</td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="tbSubject" runat="server" CssClass="centered" Width="300px"></asp:TextBox>
+                    <asp:TextBox ID="tbSubject" runat="server" CssClass="centered" Width="300px">Topic, oh my topic!</asp:TextBox>
                 </td>
                 <td class="auto-style12">&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style10">Text</td>
                 <td class="auto-style11">
-                    <asp:TextBox ID="tbText" runat="server" CssClass="centered" Width="300px" TextMode="MultiLine"></asp:TextBox>
+                    <asp:TextBox ID="tbText" runat="server" CssClass="centered" Width="300px" TextMode="MultiLine">Some text i want to share!</asp:TextBox>
                 </td>
                 <td class="auto-style15"></td>
             </tr>
             <tr>
                 <td class="auto-style7">Server SMTP</td>
                 <td class="auto-style6">
-                    <asp:TextBox ID="tbSMTP" runat="server" Width="150px"></asp:TextBox>
-                    <asp:Label ID="lblPort" runat="server" Text="Port:"></asp:Label>
-                    <asp:TextBox ID="tbPort" runat="server" Width="90px"></asp:TextBox>
+                    <asp:TextBox ID="tbSMTP" runat="server" Width="150px" Enabled="False">smtp.gmail.com</asp:TextBox>
+                    <asp:Label ID="lblPort" runat="server" Text="Port:" Enabled="False"></asp:Label>
+                    <asp:TextBox ID="tbPort" runat="server" Width="90px" Enabled="False">587</asp:TextBox>
                 </td>
                 <td class="auto-style14">
-                    <asp:RadioButtonList ID="rblSMTP" runat="server" AutoPostBack="True">
+                    <asp:RadioButtonList ID="rblSMTP" runat="server" AutoPostBack="True" OnSelectedIndexChanged="rblSMTP_SelectedIndexChanged">
                         <asp:ListItem Selected="True">localhost</asp:ListItem>
                         <asp:ListItem>authenticated</asp:ListItem>
                     </asp:RadioButtonList>
@@ -141,14 +142,14 @@
             <tr>
                 <td class="auto-style8">User</td>
                 <td class="auto-style9">
-                    <asp:TextBox ID="tbUser" runat="server" Width="200px"></asp:TextBox>
+                    <asp:TextBox ID="tbUser" runat="server" Width="200px">Your full mail</asp:TextBox>
                 </td>
                 <td class="auto-style13"></td>
             </tr>
             <tr>
                 <td class="auto-style8">Password</td>
                 <td class="auto-style9">
-                    <asp:TextBox ID="tbPassword" runat="server" Width="200px"></asp:TextBox>
+                    <asp:TextBox ID="tbPassword" runat="server" Width="200px">Email password</asp:TextBox>
                 </td>
                 <td class="auto-style13"></td>
             </tr>

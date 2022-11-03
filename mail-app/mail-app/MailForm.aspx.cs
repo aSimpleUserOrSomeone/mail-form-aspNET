@@ -51,10 +51,18 @@ namespace mail_app
                 message = new MailMessage(tbFrom.Text, tbTo.Text);
                 message.Subject = tbSubject.Text;
                 message.Body = tbText.Text;
-                client = new SmtpClient(tbSMTP.Text, int.Parse(tbPort.Text));
-                client.UseDefaultCredentials = false;
-                client.EnableSsl = false;
-                client.Credentials = new System.Net.NetworkCredential(tbUser.Text, tbPassword.Text);
+
+                if(rblSMTP.SelectedValue == "localhost")
+                {
+                    client = new SmtpClient("127.0.0.1", 25);
+                    client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                } else
+                {
+                    client = new SmtpClient(tbSMTP.Text, int.Parse(tbPort.Text));
+                    client.UseDefaultCredentials = false;
+                    client.EnableSsl = false;
+                    client.Credentials = new System.Net.NetworkCredential(tbUser.Text, tbPassword.Text);
+                }
                 
                 for (int i = 0; i < lbAttachments.Items.Count; i++)
                 {
@@ -79,6 +87,13 @@ namespace mail_app
             {
                 lblInfo1.Text = "You can not send messages (" + ex.Message + ")";
             }
+        }
+
+        protected void rblSMTP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tbSMTP.Enabled = !tbSMTP.Enabled;
+            lblPort.Enabled = !lblPort.Enabled;
+            tbPort.Enabled = !tbPort.Enabled;
         }
     }
 }
